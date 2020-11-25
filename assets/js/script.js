@@ -4,26 +4,25 @@ var i = 1;
 function addNewQuestion(){
     var app = document.getElementById("app");
     var addQues = app.lastElementChild;
-    if (document.body.contains(addQues)){
-        var clone = addQues.cloneNode(true);
-        clone.setAttribute('data-question', ++i);
-        clone.id = "question-section-" + ++i;
-        addQues.parentNode.appendChild(clone);
-    }
+    var clone = addQues.cloneNode(true);
+    clone.setAttribute('data-question', ++i);
+    clone.id = "question-section-" + i;
+    addQues.parentNode.appendChild(clone);
 }
 
 // Edit Question Toggle
 function editQuestion(e){
-    var questioncontent = e.parentNode.parentNode.parentNode.getElementsByClassName("question-content")[0];;
+    var questioncontent = e.parentNode.parentNode.parentNode.getElementsByClassName("question-content")[0];
     $(questioncontent).toggle("slow");
 }
 
 // Copy Question
-function copyQuestion(){
-    let questionSection = document.getElementById("question-section-1");
+function copyQuestion(e){
+    let x = e.parentNode.parentNode.parentNode.id;
+    let questionSection = document.getElementById(x);
     let clone = questionSection.cloneNode(true);
     clone.setAttribute('data-question', ++i);
-    clone.id = "question-section-" + ++i;
+    clone.id = "question-section-" + i;
     questionSection.parentNode.appendChild(clone);
 }
 

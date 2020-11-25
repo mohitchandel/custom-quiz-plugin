@@ -20,3 +20,7 @@
 .drag-cursor{
 	cursor: all-scroll;
 }
+.the-bar{
+	background: #f3f3f3;
+	border: solid 1px #e1e1e1;
+}

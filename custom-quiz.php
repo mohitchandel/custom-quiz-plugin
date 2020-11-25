@@ -46,22 +46,22 @@ function ct_show_quiz_meta_box() {
 ?> 
 
 <div class="py-2">
-    <a class="btn btn-dark" onclick="addNewQuestion()">Add New Question</a>
+    <a class="btn btn-dark rounded-0" onclick="addNewQuestion()">Add New Question</a>
 </div>
 <div id="app">
-    <div id="question-section-1" class="my-2 drag-cursor" data-question="1">
-        <div id="question-bar" class=" bg-dark p-2">
-            <div class="text-light" id="function-btns">
-                <a class="btn btn-light btn-sm" id="edit-question" onclick="editQuestion(this)">
+    <div id="question-section-1" class="my-2 drag-cursor clone-node" data-question="1">
+        <div id="question-bar" class="p-2 the-bar">
+            <div class="text-dark" id="function-btns">
+                <h5 class="">This is question title</h5>
+                <a class="btn btn-light btn-sm bg-primary text-light rounded-0" id="edit-question" onclick="editQuestion(this)">
                     <i class="fa fa-edit"></i>
                 </a>
-                <a class="btn btn-light btn-sm" id="copy-question" onclick="copyQuestion()">
+                <a class="btn btn-light btn-sm border border-dark rounded-0" id="copy-question" onclick="copyQuestion(this)">
                     <i class="fa fa-copy"></i>
                 </a>
-                <a class="btn btn-light btn-sm" id="delete-question" onclick="removeQuestion(this)">
+                <a class="btn btn-light btn-sm bg-danger text-light rounded-0" id="delete-question" onclick="removeQuestion(this)">
                     <i class="fa fa-trash"></i>
                 </a>
-                <span>This is question title</span>
             </div>
         </div>
         <div id="question-content-section" class="question-content">
