@@ -17,3 +17,6 @@
 #app > div:first-child #delete-question {
     display: none;
 }
+.drag-cursor{
+	cursor: all-scroll;
+}

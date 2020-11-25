@@ -49,7 +49,7 @@ function ct_show_quiz_meta_box() {
     <a class="btn btn-dark" onclick="addNewQuestion()">Add New Question</a>
 </div>
 <div id="app">
-    <div id="question-section-1" class="my-2" data-question="1">
+    <div id="question-section-1" class="my-2 drag-cursor" data-question="1">
         <div id="question-bar" class=" bg-dark p-2">
             <div class="text-light" id="function-btns">
                 <a class="btn btn-light btn-sm" id="edit-question" onclick="editQuestion(this)">

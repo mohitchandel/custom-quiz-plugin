@@ -72,3 +72,7 @@ function typeThreeSelect(){
 function removeOptions(e){
     e.parentNode.remove();
 }
+
+
+$( "#app" ).sortable();
+$( "#app" ).disableSelection();
