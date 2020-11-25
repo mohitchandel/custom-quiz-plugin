@@ -7,3 +7,13 @@
 #opfield>#removeop , #opfieldtwo>#removeop{
     display: none;
 }
+.selectt{
+	display: none;
+}
+#question-content-section{
+	display: none;
+}
+
+#app > div:first-child #delete-question {
+    display: none;
+}

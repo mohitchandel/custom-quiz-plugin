@@ -44,15 +44,23 @@ add_action('init', 'ct_quiz_custom_post_type');
 function ct_show_quiz_meta_box() {
     global $post;
 ?> 
-    <div class="py-2">
-        <a class="btn btn-dark">Add New Question</a>
-    </div> 
+
+<div class="py-2">
+    <a class="btn btn-dark" onclick="addNewQuestion()">Add New Question</a>
+</div>
+<div id="app">
     <div id="question-section-1" class="my-2" data-question="1">
         <div id="question-bar" class=" bg-dark p-2">
-            <div class="text-light">
-                <a class="btn btn-light btn-sm" id="edit-question" onclick="editQuestion()">edit</a>
-                <a class="btn btn-light btn-sm" onclick="copyQuestion()">copy</a>
-                <a class="btn btn-light btn-sm" onclick="removeQuestion(this)">delete</a>
+            <div class="text-light" id="function-btns">
+                <a class="btn btn-light btn-sm" id="edit-question" onclick="editQuestion(this)">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a class="btn btn-light btn-sm" id="copy-question" onclick="copyQuestion()">
+                    <i class="fa fa-copy"></i>
+                </a>
+                <a class="btn btn-light btn-sm" id="delete-question" onclick="removeQuestion(this)">
+                    <i class="fa fa-trash"></i>
+                </a>
                 <span>This is question title</span>
             </div>
         </div>
@@ -62,12 +70,12 @@ function ct_show_quiz_meta_box() {
                 <textarea class="question-textarea w-100"></textarea>
                 <p class="py-2">Answer Type:</p>
                 <div id="option-list" class="py-2">
-                    <lable><input type="radio" id="typeone" name="quest-type" value="1" >Question With Options</label>
-                    <lable><input type="radio" id="typetwo" name="quest-type" value="2"> Question WithOut Options</label>
-                    <lable><input type="radio" id="typethree" name="quest-type" value="3"> Question With Yes/No</label>
+                    <lable><input type="radio" id="typeone" name="quest-type" onchange="typeOneSelect()" value="1" >Question With Options</label>
+                    <lable><input type="radio" id="typetwo" name="quest-type" onchange="typeTwoSelect()" value="2"> Question WithOut Options</label>
+                    <lable><input type="radio" id="typethree" name="quest-type" onchange="typeThreeSelect()" value="3"> Question With Yes/No</label>
                 </div>
                 <div class="qs_with_op selectt">
-                    <p>Set This Question is With Options<p>
+                    <p>Set This Question is With Options</p>
                     <a id="addop" onclick="addOptions();" class="btn btn-sm btn-success">Add option</a>
                     <div class="option-text py-2" id="opfield">
                         <input class="w-50" id="inp-op" name="" type="text"/>
@@ -77,10 +85,10 @@ function ct_show_quiz_meta_box() {
                     </div>     
                 </div>
                 <div class="qs_without_op selectt" >
-                    <p>Set This Question is WithOut Options<p>
+                    <p>Set This Question is WithOut Options</p>
                 </div>
                 <div class="qs_with_yn selectt" >
-                    <p>Set This Question is With Yes/No<p>
+                    <p>Set This Question is With Yes/No</p>
                     <a id="addoptwo" onclick="addOptionstwo();" class="btn btn-sm btn-success">Add option</a>
                     <div class="option-text py-2" id="opfieldtwo">
                         <input class="w-50" id="inp-optwo" name="" type="text"/>
@@ -92,70 +100,9 @@ function ct_show_quiz_meta_box() {
             </div>
         </div>
     </div>
-    <script>
-
-    // Edit Question Toggle
-    $(".question-content").hide();
-    function editQuestion(){
-        $("#question-content-section").toggle();
-    }
-
-    // Copy Question
-    var i = 1;
-    function copyQuestion(){
-        let questionSection = document.getElementById("question-section-1");
-        var clone = questionSection.cloneNode(true);
-        clone.setAttribute('data-question', ++i);
-        clone.id = "question-section-" + ++i;
-        questionSection.parentNode.appendChild(clone);
-    }
-
-    // Remove Question function
-    function removeQuestion(e){
-        e.parentNode.parentNode.parentNode.remove();
-    }
-
-    // Add option function
-    function addOptions(){
-        let optioField = document.getElementById("opfield");
-        var clone = optioField.cloneNode(true);
-        clone.id = "opfield" + ++i;
-        clone.getElementsByTagName('input')[0].id = "inp-op" + i;
-        clone.getElementsByTagName("input")[0].value ="";
-        optioField.parentNode.appendChild(clone);
-    }
-    function addOptionstwo(){
-        let optioField = document.getElementById("opfieldtwo");
-        var clone = optioField.cloneNode(true);
-        clone.id = "opfieldtwo" + ++i;
-        clone.getElementsByTagName('input')[0].id = "inp-optwo" + i;
-        clone.getElementsByTagName("input")[0].value ="";
-        optioField.parentNode.appendChild(clone);
-    }
-
-    // Remove option function
-    function removeOptions(e){
-        e.parentNode.remove();
-    }
-    
-    // Choose Question Type function
-    $('.selectt').hide();
-    document.getElementById('typeone').onchange = function(){
-        $('.qs_with_op').show();
-        $('.qs_without_op').hide();
-        $('.qs_with_yn').hide();
-    }
-    document.getElementById('typetwo').onchange = function(){
-        $('.qs_with_op').hide();
-        $('.qs_without_op').show();
-        $('.qs_with_yn').hide();
-    }
-    document.getElementById('typethree').onchange = function(){
-        $('.qs_with_op').hide();
-        $('.qs_without_op').hide();
-        $('.qs_with_yn').show();
-    }
-    </script>
+</div>
+<script>
+</script>
     
 
  <?php 
