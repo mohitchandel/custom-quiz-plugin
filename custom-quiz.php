@@ -43,58 +43,79 @@ add_action('init', 'ct_quiz_custom_post_type');
 
 function ct_show_quiz_meta_box() {
     global $post;
-?>
-    
-    <div id="question">
-        <div class="question py-2" id="question">
-            <p>Question :</p>
-            <textarea class="question-textarea w-100"></textarea>
-            <p class="py-2">Answer Type:</p>
-            <div id="option-list" class="py-2">
-                <lable><input type="radio" id="typeone" name="quest-type" value="1" >Question With Options</label>
-                <lable><input type="radio" id="typetwo" name="quest-type" value="2"> Question WithOut Options</label>
-                <lable><input type="radio" id="typethree" name="quest-type" value="3"> Question With Yes/No</label>
+?> 
+    <div class="py-2">
+        <a class="btn btn-dark">Add New Question</a>
+    </div> 
+    <div id="question-section-1" class="my-2" data-question="1">
+        <div id="question-bar" class=" bg-dark p-2">
+            <div class="text-light">
+                <a class="btn btn-light btn-sm" id="edit-question" onclick="editQuestion()">edit</a>
+                <a class="btn btn-light btn-sm" onclick="copyQuestion()">copy</a>
+                <a class="btn btn-light btn-sm" onclick="removeQuestion(this)">delete</a>
+                <span>This is question title</span>
             </div>
-            <div class="qs_with_op selectt">
-                <p>Set This Question is With Options<p>
-                <a id="addop" onclick="addOptions();" class="btn btn-sm btn-success">Add option</a>
-                <div class="option-text py-2" id="opfield">
-                    <input class="w-50" id="inp-op" name="" type="text"/>
-                    <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm btn-light">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 
-                        .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0
-                        .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9
-                        0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
-                        </svg>
-                    </a>
-                </div>     
+        </div>
+        <div id="question-content-section" class="question-content">
+            <div class="question py-2" id="question">
+                <p>Question :</p>
+                <textarea class="question-textarea w-100"></textarea>
+                <p class="py-2">Answer Type:</p>
+                <div id="option-list" class="py-2">
+                    <lable><input type="radio" id="typeone" name="quest-type" value="1" >Question With Options</label>
+                    <lable><input type="radio" id="typetwo" name="quest-type" value="2"> Question WithOut Options</label>
+                    <lable><input type="radio" id="typethree" name="quest-type" value="3"> Question With Yes/No</label>
+                </div>
+                <div class="qs_with_op selectt">
+                    <p>Set This Question is With Options<p>
+                    <a id="addop" onclick="addOptions();" class="btn btn-sm btn-success">Add option</a>
+                    <div class="option-text py-2" id="opfield">
+                        <input class="w-50" id="inp-op" name="" type="text"/>
+                        <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm btn-light">
+                            remove
+                        </a>
+                    </div>     
+                </div>
+                <div class="qs_without_op selectt" >
+                    <p>Set This Question is WithOut Options<p>
+                </div>
+                <div class="qs_with_yn selectt" >
+                    <p>Set This Question is With Yes/No<p>
+                    <a id="addoptwo" onclick="addOptionstwo();" class="btn btn-sm btn-success">Add option</a>
+                    <div class="option-text py-2" id="opfieldtwo">
+                        <input class="w-50" id="inp-optwo" name="" type="text"/>
+                        <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm btn-light">
+                            remove
+                        </a>
+                    </div> 
+                </div>
             </div>
-            <div class="qs_without_op selectt" >
-                <p>Set This Question is WithOut Options<p>
-            </div>
-            <div class="qs_with_yn selectt" >
-                <p>Set This Question is With Yes/No<p>
-                <a id="addoptwo" onclick="addOptionstwo();" class="btn btn-sm btn-success">Add option</a>
-                <div class="option-text py-2" id="opfieldtwo">
-                    <input class="w-50" id="inp-optwo" name="" type="text"/>
-                    <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm btn-light">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 
-                            .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0
-                            .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9
-                            0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
-                        </svg>
-                    </a>
-                </div> 
-            </div>
-            <!-- <a class="btn btn-danger btn-sm remove" >Remove This Question</a> -->
         </div>
     </div>
     <script>
 
-    // Add option function
+    // Edit Question Toggle
+    $(".question-content").hide();
+    function editQuestion(){
+        $("#question-content-section").toggle();
+    }
+
+    // Copy Question
     var i = 1;
+    function copyQuestion(){
+        let questionSection = document.getElementById("question-section-1");
+        var clone = questionSection.cloneNode(true);
+        clone.setAttribute('data-question', ++i);
+        clone.id = "question-section-" + ++i;
+        questionSection.parentNode.appendChild(clone);
+    }
+
+    // Remove Question function
+    function removeQuestion(e){
+        e.parentNode.parentNode.parentNode.remove();
+    }
+
+    // Add option function
     function addOptions(){
         let optioField = document.getElementById("opfield");
         var clone = optioField.cloneNode(true);
@@ -113,7 +134,6 @@ function ct_show_quiz_meta_box() {
     }
 
     // Remove option function
-    var removeBtn = document.getElementById('removeop');
     function removeOptions(e){
         e.parentNode.remove();
     }
