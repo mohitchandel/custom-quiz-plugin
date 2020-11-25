@@ -3,3 +3,7 @@
     padding:10px; 
     border:solid 2px #e1e1e1;
 }
+
+#opfield>#removeop , #opfieldtwo>#removeop{
+    display: none;
+}
