@@ -49,7 +49,7 @@ function ct_show_quiz_meta_box() {
     <a class="btn btn-dark rounded-0" onclick="addNewQuestion()">Add New Question</a>
 </div>
 <div id="app">
-    <div id="question-section-1" class="my-2 drag-cursor clone-node" data-question="1">
+    <div id="question-section-0" class="my-2 drag-cursor clone-node" data-question="0">
         <div id="question-bar" class="p-2 the-bar">
             <div class="text-dark" id="function-btns">
                 <h5 class="">This is question title</h5>
@@ -67,33 +67,37 @@ function ct_show_quiz_meta_box() {
         <div id="question-content-section" class="question-content">
             <div class="question py-2" id="question">
                 <p>Question :</p>
-                <textarea class="question-textarea w-100"></textarea>
+                <textarea id="ask-question-0" class="question-textarea w-100 rounded-0"></textarea>
                 <p class="py-2">Answer Type:</p>
                 <div id="option-list" class="py-2">
                     <lable><input type="radio" id="typeone" name="quest-type" onchange="typeOneSelect()" value="1" >Question With Options</label>
                     <lable><input type="radio" id="typetwo" name="quest-type" onchange="typeTwoSelect()" value="2"> Question WithOut Options</label>
                     <lable><input type="radio" id="typethree" name="quest-type" onchange="typeThreeSelect()" value="3"> Question With Yes/No</label>
                 </div>
-                <div class="qs_with_op selectt">
+                <div class="qs_with_op selectt" id="qs_op">
                     <p>Set This Question is With Options</p>
-                    <a id="addop" onclick="addOptions();" class="btn btn-sm btn-success">Add option</a>
+                    <a id="addop" onclick="addOptions();" class="btn btn-sm btn-primary rounded-0">
+                        <i class="fa fa-plus"></i> Add option
+                    </a>
                     <div class="option-text py-2" id="opfield">
-                        <input class="w-50" id="inp-op" name="" type="text"/>
-                        <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm btn-light">
-                            remove
+                        <input class="w-50 rounded-0" id="ask-question-0-inpwh-op-0" name="" type="text"/>
+                        <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm bg-danger text-light rounded-0">
+                            <i class="fa fa-trash"></i>
                         </a>
                     </div>     
                 </div>
-                <div class="qs_without_op selectt" >
+                <div class="qs_without_op selectt" id="qs_wht_op">
                     <p>Set This Question is WithOut Options</p>
                 </div>
-                <div class="qs_with_yn selectt" >
+                <div class="qs_with_yn selectt" id="qs_yn">
                     <p>Set This Question is With Yes/No</p>
-                    <a id="addoptwo" onclick="addOptionstwo();" class="btn btn-sm btn-success">Add option</a>
-                    <div class="option-text py-2" id="opfieldtwo">
-                        <input class="w-50" id="inp-optwo" name="" type="text"/>
-                        <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm btn-light">
-                            remove
+                    <a id="addoptwo" onclick="addOptionsYn(this);" class="btn btn-sm btn-primary rounded-0"> 
+                        <i class="fa fa-plus"></i> Add option
+                    </a>
+                    <div class="option-text py-2" id="opfieldyn">
+                        <input class="w-50 rounded-0" id="ask-question-0-inpwh-yn-0" name="" type="text"/>
+                        <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm btn-light bg-danger text-light rounded-0">
+                           <i class="fa fa-trash"></i>
                         </a>
                     </div> 
                 </div>
