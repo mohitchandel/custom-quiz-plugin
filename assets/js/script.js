@@ -5,7 +5,7 @@ function addNewQuestion(){
     var clone = $("#app .clone-node:last-child").clone();
     newId = "question-section-"+length;
     clone.attr("id", newId);
-    clone.data('data-question',length);
+    $(clone).attr('data-question',length)
     clone.find("#ask-question-0").attr("id","ask-question-"+length);
     $("#app").append(clone); 
 }
