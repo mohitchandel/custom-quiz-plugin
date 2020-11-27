@@ -76,11 +76,11 @@ function ct_show_quiz_meta_box() {
                 </div>
                 <div class="qs_with_op selectt" id="qs_op">
                     <p>Set This Question is With Options</p>
-                    <a id="addop" onclick="addOptions();" class="btn btn-sm btn-primary rounded-0">
+                    <a id="addop" onclick="addOptions(this);" class="btn btn-sm btn-primary rounded-0">
                         <i class="fa fa-plus"></i> Add option
                     </a>
                     <div class="option-text py-2" id="opfield">
-                        <input class="w-50 rounded-0" id="ask-question-0-inpwh-op-0" name="" type="text"/>
+                        <input class="w-50 rounded-0 inpwh-op" id="for-question-0-inpwh-op-0" data-for-question="0" name="" type="text"/>
                         <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm bg-danger text-light rounded-0">
                             <i class="fa fa-trash"></i>
                         </a>
@@ -91,20 +91,22 @@ function ct_show_quiz_meta_box() {
                 </div>
                 <div class="qs_with_yn selectt" id="qs_yn">
                     <p>Set This Question is With Yes/No</p>
-                    <a id="addoptwo" onclick="addOptionsYn(this);" class="btn btn-sm btn-primary rounded-0"> 
+                    <a id="addopyn" onclick="addOptionsYn(this);" class="btn btn-sm btn-primary rounded-0"> 
                         <i class="fa fa-plus"></i> Add option
                     </a>
-                    <div class="option-text py-2" id="opfieldyn">
-                        <input class="w-50 rounded-0" id="ask-question-0-inpwh-yn-0" name="" type="text"/>
+                    <div class="option-text-yn py-2" id="opfieldyn-0">
+                        <input class="w-50 rounded-0 inpwh-yn" id="for-question-0-inpwh-yn-0" data-for-question="0" name="" type="text"/>
                         <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm btn-light bg-danger text-light rounded-0">
                            <i class="fa fa-trash"></i>
                         </a>
-                    </div> 
+                    </div>
+                </div> 
                 </div>
             </div>
         </div>
     </div>
 </div>
+<a class="btn btn-success btn-sm rounded-0">Save</a>
 <script>
 </script>
     

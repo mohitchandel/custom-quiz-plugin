@@ -6,7 +6,9 @@ function addNewQuestion(){
     newId = "question-section-"+length;
     clone.attr("id", newId);
     $(clone).attr('data-question',length)
-    clone.find("#ask-question-0").attr("id","ask-question-"+length);
+    clone.find(".question-textarea").attr("id","ask-question-"+length);
+    clone.find(".inpwh-yn").attr("id","for-question-"+length+"-inpwh-yn-0").attr('data-for-question',length).val("");
+    clone.find(".inpwh-op").attr("id","for-question-"+length+"-inpwh-op-0").attr('data-for-question',length).val("");
     $("#app").append(clone); 
 }
 
@@ -18,13 +20,17 @@ function editQuestion(e){
 
 // Copy Question
 function copyQuestion(e){
-    let x = e.parentNode.parentNode.parentNode.id;
-    let questionSection = document.getElementById(x);
-    let clone = questionSection.cloneNode(true);
     length = $(".clone-node").length
-    clone.setAttribute('data-question', length);
-    clone.id = "question-section-" + length;
-    questionSection.parentNode.appendChild(clone);
+    var x = e.parentNode.parentNode.parentNode.id;
+    let questionSection = document.getElementById(x);
+    var clone = $(questionSection).clone();
+    newId = "question-section-"+length;
+    clone.attr("id", newId);
+    $(clone).attr('data-question',length)
+    clone.find(".question-textarea").attr("id","ask-question-"+length);
+    clone.find(".inpwh-yn").attr("id","for-question-"+length+"-inpwh-yn-0").attr('data-for-question',length);
+    clone.find(".inpwh-op").attr("id","for-question-"+length+"-inpwh-op-0").attr('data-for-question',length);
+    $("#app").append(clone); 
 }
 
 // Delete Question 
@@ -33,24 +39,25 @@ function removeQuestion(e){
 }
 
 // Add option To Question
-function addOptions(){
-    let optionField = document.getElementById("opfield");
-    var clone = optionField.cloneNode(true);
-    clone.id = "opfield-" + ++i;
-    clone.getElementsByTagName("input")[0].value ="";
-    optionField.parentNode.appendChild(clone);
-    var opfldParent = document.getElementById(clone.id).parentNode.parentNode
-    var opfldParentId = opfldParent.id
-    var mainParent = document.getElementById(opfldParentId).getElementsByTagName('textarea')[0];
-    clone.getElementsByTagName('input')[0].id = mainParent.id+"-inpwh-op-" + i;
+function addOptions(e){
+    var parent = e.parentNode.id;
+    var clone = $("#"+parent).clone(true);
+    mainlength = $(".inpwh-yn").data("for-question");
+    length = $(".option-text").length;
+    newId = "opfield-"+length;
+    clone.attr("id", newId);
+    clone.find(".inpwh-op").attr("id","for-question-"+mainlength+"-inpwh-op-"+length).val("");
+    $("#qs_op").append(clone);
 }
 function addOptionsYn(e){
-    let theClone = e.parentNode;
-    var clone = theClone.cloneNode(true);
-    length = $(".clone-node").length
-    clone.getElementsByTagName('input')[0].id = "ask-question-"+length+"-inpwh-yn-" + ++i;
-    clone.getElementsByTagName("input")[0].value ="";
-    theClone.parentNode.appendChild(clone);
+    var parent = e.parentNode.id;
+    var clone = $("#"+parent).clone(true);
+    mainlength = $(".inpwh-yn").data("for-question")
+    length = $(".option-text-yn").length;
+    newId = "opfieldyn-"+length;
+    clone.attr("id", newId);
+    clone.find(".inpwh-yn").attr("id","for-question-"+mainlength+"-inpwh-yn-"+length).val("");
+    $("#qs_yn").append(clone);
 }
 
 // Option Toggle
