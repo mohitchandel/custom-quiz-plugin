@@ -74,12 +74,12 @@ function ct_show_quiz_meta_box() {
                     <lable><input type="radio" id="typetwo" name="quest-type" onchange="typeTwoSelect()" value="2"> Question WithOut Options</label>
                     <lable><input type="radio" id="typethree" name="quest-type" onchange="typeThreeSelect()" value="3"> Question With Yes/No</label>
                 </div>
-                <div class="qs_with_op selectt" id="qs_op">
+                <div class="qs_with_op selectt" id="qs-op-0">
                     <p>Set This Question is With Options</p>
-                    <a id="addop" onclick="addOptions(this);" class="btn btn-sm btn-primary rounded-0">
+                    <a id="addop" onclick="addOptions(this);" class="btn btn-sm btn-primary rounded-0 test">
                         <i class="fa fa-plus"></i> Add option
                     </a>
-                    <div class="option-text py-2" id="opfield">
+                    <div class="option-text py-2" id="opfield-0">
                         <input class="w-50 rounded-0 inpwh-op" id="for-question-0-inpwh-op-0" data-for-question="0" name="" type="text"/>
                         <a id="removeop" onclick="removeOptions(this);" class="btn btn-sm bg-danger text-light rounded-0">
                             <i class="fa fa-trash"></i>
@@ -89,7 +89,7 @@ function ct_show_quiz_meta_box() {
                 <div class="qs_without_op selectt" id="qs_wht_op">
                     <p>Set This Question is WithOut Options</p>
                 </div>
-                <div class="qs_with_yn selectt" id="qs_yn">
+                <div class="qs_with_yn selectt" id="qs-yn-0">
                     <p>Set This Question is With Yes/No</p>
                     <a id="addopyn" onclick="addOptionsYn(this);" class="btn btn-sm btn-primary rounded-0"> 
                         <i class="fa fa-plus"></i> Add option

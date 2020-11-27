@@ -7,6 +7,11 @@ function addNewQuestion(){
     clone.attr("id", newId);
     $(clone).attr('data-question',length)
     clone.find(".question-textarea").attr("id","ask-question-"+length);
+    clone.find(".qs_with_op").attr("id","qs-op-"+length);
+    clone.find(".qs_with_yn").attr("id","qs-yn-"+length);
+
+    var cntnt = clone.find('.qs_with_op').slice(1).attr('id');
+    console.log(cntnt);
     clone.find(".inpwh-yn").attr("id","for-question-"+length+"-inpwh-yn-0").attr('data-for-question',length).val("");
     clone.find(".inpwh-op").attr("id","for-question-"+length+"-inpwh-op-0").attr('data-for-question',length).val("");
     $("#app").append(clone); 
@@ -28,6 +33,8 @@ function copyQuestion(e){
     clone.attr("id", newId);
     $(clone).attr('data-question',length)
     clone.find(".question-textarea").attr("id","ask-question-"+length);
+    clone.find(".qs_with_op").attr("id","qs-op-"+length);
+    clone.find(".qs_with_yn").attr("id","qs-yn-"+length);
     clone.find(".inpwh-yn").attr("id","for-question-"+length+"-inpwh-yn-0").attr('data-for-question',length);
     clone.find(".inpwh-op").attr("id","for-question-"+length+"-inpwh-op-0").attr('data-for-question',length);
     $("#app").append(clone); 
@@ -41,23 +48,28 @@ function removeQuestion(e){
 // Add option To Question
 function addOptions(e){
     var parent = e.parentNode.id;
-    var clone = $("#"+parent).clone(true);
-    mainlength = $(".inpwh-yn").data("for-question");
-    length = $(".option-text").length;
+    var mainclone = $("#opfield-0");
+    var x = $('#'+parent).find(".option-text").attr("id");
+    var clone = $("#"+x).clone(true);
+    length = $('#'+parent).find(".option-text").length;
     newId = "opfield-"+length;
     clone.attr("id", newId);
-    clone.find(".inpwh-op").attr("id","for-question-"+mainlength+"-inpwh-op-"+length).val("");
-    $("#qs_op").append(clone);
+    var mainlength = $("#"+parent).find(".inpwh-op").data("for-question");
+    clone.find(".inpwh-op").attr("for-question", mainlength)
+    clone.find(".inpwh-op").attr("id","for-question-"+mainlength+"-inpwh-op-"+length).attr("data-for-question", mainlength).val("");
+    $("#"+parent).append(clone);
 }
 function addOptionsYn(e){
     var parent = e.parentNode.id;
-    var clone = $("#"+parent).clone(true);
-    mainlength = $(".inpwh-yn").data("for-question")
-    length = $(".option-text-yn").length;
+    var mainclone = $("#opfieldyn-0");
+    var x = $('#'+parent).find(".option-text-yn").attr("id");
+    var mainlength = $("#"+parent).find(".inpwh-yn").data("for-question");
+    var clone = $("#"+x).clone(true)
+    length = $('#'+parent).find(".option-text-yn").length;
     newId = "opfieldyn-"+length;
     clone.attr("id", newId);
-    clone.find(".inpwh-yn").attr("id","for-question-"+mainlength+"-inpwh-yn-"+length).val("");
-    $("#qs_yn").append(clone);
+    clone.find(".inpwh-yn").attr("id","for-question-"+mainlength+"-inpwh-yn-"+length).attr("data-for-question", mainlength).val("");
+    $("#"+parent).append(clone);
 }
 
 // Option Toggle
